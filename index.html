@@ -1,0 +1,31 @@
+<script type="importmap">
+  {
+    "imports": {
+      "preact": "https://esm.sh/preact@10.19.2",
+      "preact/": "https://esm.sh/preact@10.19.2/",
+      "htm/preact": "https://esm.sh/htm@3.1.1/preact?external=preact"
+    }
+  }
+</script>
+
+<script type="module">
+  import { render } from 'preact';
+  import { useReducer } from 'preact/hooks';
+  import { html } from 'htm/preact';
+
+  export function App() {
+    const [count, add] = useReducer((a, b) => a + b, 0);
+
+    return html`
+      <div class="flex justify-center items-center h-screen">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick=${() => add(-1)}>Decrement</button>
+        <input class="text-center w-12" readonly size="4" value=${count} />
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick=${() => add(1)}>Increment</button>
+      </div>
+    `;
+  }
+
+  render(html`<${App} />`, document.body);
+</script>
+
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
